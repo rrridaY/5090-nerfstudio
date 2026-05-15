@@ -21,6 +21,7 @@ ARG UBUNTU_VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV QT_XCB_GL_INTEGRATION=xcb_egl
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
         git \
