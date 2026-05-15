@@ -10,11 +10,16 @@ IMAGE_NAME="nerfstudio-5090"
 CONTAINER_NAME="nerfstudio"
 
 # ─────────────────────────────────────────
-# 1. リポジトリのクローン
+# 1. リポジトリのクローン（すでにリポジトリ内にいる場合はスキップ）
 # ─────────────────────────────────────────
-echo "==> リポジトリをクローン中..."
-git clone "$REPO_URL"
-cd 5090-nerfstudio
+if git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "==> すでにリポジトリ内にいるためクローンをスキップ"
+    cd "$(git rev-parse --show-toplevel)"
+else
+    echo "==> リポジトリをクローン中..."
+    git clone "$REPO_URL"
+    cd 5090-nerfstudio
+fi
 
 # ─────────────────────────────────────────
 # 2. Docker イメージのビルド
