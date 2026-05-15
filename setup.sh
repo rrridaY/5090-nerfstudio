@@ -27,7 +27,7 @@ fi
 #    全アーキテクチャ対応にしたい場合は --build-arg を省略する
 # ─────────────────────────────────────────
 echo "==> Docker イメージをビルド中... (時間がかかります)"
-docker build \
+sudo docker build \
     --build-arg CUDA_ARCHITECTURES="120" \
     -t "$IMAGE_NAME" \
     .
@@ -36,10 +36,10 @@ docker build \
 # 3. 動作確認
 # ─────────────────────────────────────────
 echo "==> GPU 認識確認..."
-docker run --gpus all --rm "$IMAGE_NAME" nvidia-smi
+sudo docker run --gpus all --rm "$IMAGE_NAME" nvidia-smi
 
 echo "==> PyTorch / CUDA / sm_120 確認..."
-docker run --gpus all --rm "$IMAGE_NAME" python -c \
+sudo docker run --gpus all --rm "$IMAGE_NAME" python -c \
     "import torch; print('CUDA available:', torch.cuda.is_available()); print('Device capability:', torch.cuda.get_device_capability())"
 
 # ─────────────────────────────────────────
@@ -49,7 +49,7 @@ docker run --gpus all --rm "$IMAGE_NAME" python -c \
 echo "==> コンテナを起動..."
 mkdir -p ~/nerfstudio-data
 
-docker run --gpus all -it \
+sudo docker run --gpus all -it \
     --name "$CONTAINER_NAME" \
     --rm \
     -p 7007:7007 \
