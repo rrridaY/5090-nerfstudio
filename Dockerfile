@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 ARG UBUNTU_VERSION=22.04
-ARG NVIDIA_CUDA_VERSION=11.8.0
+ARG NVIDIA_CUDA_VERSION=12.8.0
 # CUDA architectures, required by Colmap and tiny-cuda-nn. Use >= 8.0 for faster TCNN.
-ARG CUDA_ARCHITECTURES="90;89;86;80;75;70;61"
+ARG CUDA_ARCHITECTURES="120;90;89;86;80;75;70;61"
 ARG NERFSTUDIO_VERSION=""
 
 # Pull source either provided or from git.
