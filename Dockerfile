@@ -44,7 +44,8 @@ RUN apt-get update && \
         libcgal-dev \
         libceres-dev \
         python3.10-dev \
-        python3-pip
+        python3-pip \
+        python3-setuptools
 
 # Build and install CMake
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.31.3/cmake-3.31.3-linux-x86_64.sh \
